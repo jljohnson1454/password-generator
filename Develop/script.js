@@ -4,63 +4,74 @@
 alert("Welcome to Password Generator!");
 alert("Please click 'Generate Password' for Password Criteria");
 
+lower = String.fromCharCode(97, 122);
+upper = String.fromCharCode(65, 90);
+special = String.fromCharCode(33, 47, 58, 64);
+number = String.fromCharCode(48,57);
+
+
+
 var passLength = null;
+var passLower = null;
+var passUpper = null;
+var passNumber = null;
+var passSpecial = null;
+
+
 
 
 //First prompt: Password Length
-function passwordLength() {
+function passwordCriteria() {
+  
   var promptLength = prompt("Please enter a password length between 8 and 128 characters");
-
     if (promptLength === "" || promptLength === null || promptLength < 8 || promptLength > 128 || promptLength % 1 != 0 || Number(promptLength) === NaN) {
     window.alert("You need to provide a valid entry! Please try again.");
-    return passwordLength();
+    return passwordCriteria();
     }
     else{
       passLength = promptLength;
+    } 
+
+    var promptLower = confirm("Will the password include Lowercase characters? Please press OK or Cancel");
+    if (promptLower == true) {
+      passLower = ["abcdefghijklmnopqrstuvwxyz"];
+      console.log(passLower);
+    }
+
+
+    var promptUpper = confirm("Will the password include Uppercase characters? Please press OK or Cancel");
+    if (promptUpper == true) {
+      passUpper = ["ABCDEFGHIJKLMNOPQRSTUVWXYZ"]
+    }
+
+
+    var promptNumber = confirm("Will the password include Numbers? Please press OK or Cancel");
+    if (promptNumber == true) {
+      passNumber = [1234567890];
+    }
+
+
+    var promptSpecial = confirm("Will the password include Special characters (i.e. !@#$%)? Please press OK or Cancel");
+    if (promptSpecial = true) {
+      passSpecial = ["!@#$%^&*()_+;:<>.,/\|-="]
+      console.log (passSpecial);
     }
   
 }
 
 
-//Second Prompt: Password Lower Case
-function passwordLower() {
-  var promptLower = confirm("Will the password include Lowercase characters? Please press OK or Cancel");
 
 
-}
-
-
-//Second Prompt: Password UpperCase
-function passwordUpper() {
-  var promptUpper = confirm("Will the password include Uppercase characters? Please press OK or Cancel");
-
-}
-
-
-//Third Prompt: Password Number?
-function passwordNumber() {
-  var promptNumber = confirm("Will the password include Numbers? Please press OK or Cancel");
-}
-
-//Fourth Prompt: Special Characters
-function passwordSpecial() {
-  var promptSpecial = confirm("Will the password include Special characters (i.e. !@#$%)? Please press OK or Cancel");
-
-
-}
 
 function generatePassword() {
 
 
 
 
-  passwordLength();
-  passwordLower();
-  passwordUpper();
-  passwordNumber();
-  passwordSpecial();
+  passwordCriteria();
+ 
   //put all the functions in generatePassword
-  return "Hello";
+  return ;
 }
 
 // Get references to the #generate element
@@ -83,10 +94,3 @@ var generateBtn = document.querySelector("#generate");
 generateBtn.addEventListener("click", writePassword);
 
 
-
-  // var promptLength = prompt("Please enter a password length between 8 and 128 characters")
-  // var promptLower = prompt("Will the password include Lowercase characters? Please enter 'Yes' , 'No'");
-  // var promptUpper = prompt("Will the password include Uppercase characters? Please enter 'Yes' or 'No'")
-  // var promptNumbers = prompt("Will the password include numbers? Please enter 'Yes or 'No'");
-  // var promptSpecial = prompt("Will the password include special characters? Please enter 'Yes' or 'No'")
-  
