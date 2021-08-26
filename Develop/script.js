@@ -17,7 +17,9 @@ var passUpper = null;
 var passNumber = null;
 var passSpecial = null;
 
+var pwdArray = [];
 
+var passwordRandom = [];
 
 
 //First prompt: Password Length
@@ -32,46 +34,50 @@ function passwordCriteria() {
       passLength = promptLength;
     } 
 
-    var promptLower = confirm("Will the password include Lowercase characters? Please press OK or Cancel");
+  var promptLower = confirm("Will the password include Lowercase characters? Please press OK for Yes or Cancel for No");
     if (promptLower == true) {
-      passLower = ["abcdefghijklmnopqrstuvwxyz"];
+      passLower = ["a"];
       console.log(passLower);
+      pwdArray = pwdArray.concat(passLower);
+      console.log(pwdArray);
+      // Could use a FOR loop with slice to take out each letter
     }
 
-
-    var promptUpper = confirm("Will the password include Uppercase characters? Please press OK or Cancel");
+  var promptUpper = confirm("Will the password include Uppercase characters? Please press OK for Yes or Cancel for No");
     if (promptUpper == true) {
-      passUpper = ["ABCDEFGHIJKLMNOPQRSTUVWXYZ"]
+      passUpper = ["A"];
+      pwdArray = pwdArray.concat(passUpper);
+      console.log(pwdArray);
     }
 
-
-    var promptNumber = confirm("Will the password include Numbers? Please press OK or Cancel");
+  var promptNumber = confirm("Will the password include Numbers? Please press OK for Yes or Cancel for No");
     if (promptNumber == true) {
       passNumber = [1234567890];
+      pwdArray = pwdArray.concat(passNumber);
+      console.log(pwdArray);
     }
 
 
-    var promptSpecial = confirm("Will the password include Special characters (i.e. !@#$%)? Please press OK or Cancel");
+  var promptSpecial = confirm("Will the password include Special characters (i.e. !@#$%)? Please press OK for Yes or Cancel for No");
     if (promptSpecial = true) {
-      passSpecial = ["!@#$%^&*()_+;:<>.,/\|-="]
-      console.log (passSpecial);
+      passSpecial = ["!"];
+      pwdArray = pwdArray.concat(passSpecial);
+      console.log(pwdArray);
     }
   
+    for (var i =0; i < passLength; i++) {
+      passwordRandom += pwdArray[(Math.floor(Math.random() * pwdArray.length))];
+      }
+      console.log(pwdArray[0]);
+      console.log(pwdArray[1]);
+      console.log(pwdArray[2]);
 }
 
-
-
-
-
 function generatePassword() {
-
-
-
-
+  
   passwordCriteria();
  
-  //put all the functions in generatePassword
-  return ;
+  return passwordRandom;
 }
 
 // Get references to the #generate element
