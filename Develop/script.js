@@ -24,6 +24,7 @@ var passwordRandom = [];
 
 //First prompt: Password Length
 function passwordCriteria() {
+
   
   var promptLength = prompt("Please enter a password length between 8 and 128 characters");
     if (promptLength === "" || promptLength === null || promptLength < 8 || promptLength > 128 || promptLength % 1 != 0 || Number(promptLength) === NaN) {
@@ -59,12 +60,17 @@ function passwordCriteria() {
 
 
   var promptSpecial = confirm("Will the password include Special characters (i.e. !@#$%)? Please press OK for Yes or Cancel for No");
-    if (promptSpecial = true) {
+    if (promptSpecial == true) {
       passSpecial = ["!"];
       pwdArray = pwdArray.concat(passSpecial);
+      console.log(promptSpecial);
       console.log(pwdArray);
+    } else {
+      return pwdArray;
     }
   
+    
+      
     for (var i =0; i < passLength; i++) {
       passwordRandom += pwdArray[(Math.floor(Math.random() * pwdArray.length))];
       }
@@ -78,6 +84,7 @@ function generatePassword() {
   passwordCriteria();
  
   return passwordRandom;
+
 }
 
 // Get references to the #generate element
