@@ -1,89 +1,74 @@
-// Assignment code here
-
 //Welcome Alert
 alert("Welcome to Password Generator!");
 alert("Please click 'Generate Password' for Password Criteria");
 
-lower = String.fromCharCode(97, 122);
-upper = String.fromCharCode(65, 90);
-special = String.fromCharCode(33, 47, 58, 64);
-number = String.fromCharCode(48,57);
 
-
-
+// Left the global variables with null to hold their info but could probably put them all in a function
 var passLength = null;
 var passLower = null;
 var passUpper = null;
 var passNumber = null;
 var passSpecial = null;
 
-var pwdArray = [];
+//Gathers the inidividual variable's info
 
-var passwordRandom = [];
-
-
-//First prompt: Password Length
-function passwordCriteria() {
-
-  
-  var promptLength = prompt("Please enter a password length between 8 and 128 characters");
-    if (promptLength === "" || promptLength === null || promptLength < 8 || promptLength > 128 || promptLength % 1 != 0 || Number(promptLength) === NaN) {
-    window.alert("You need to provide a valid entry! Please try again.");
-    return passwordCriteria();
-    }
-    else{
-      passLength = promptLength;
-    } 
-
-  var promptLower = confirm("Will the password include Lowercase characters? Please press OK for Yes or Cancel for No");
-    if (promptLower == true) {
-      passLower = ["a"];
-      console.log(passLower);
-      pwdArray = pwdArray.concat(passLower);
-      console.log(pwdArray);
-      // Could use a FOR loop with slice to take out each letter
-    }
-
-  var promptUpper = confirm("Will the password include Uppercase characters? Please press OK for Yes or Cancel for No");
-    if (promptUpper == true) {
-      passUpper = ["A"];
-      pwdArray = pwdArray.concat(passUpper);
-      console.log(pwdArray);
-    }
-
-  var promptNumber = confirm("Will the password include Numbers? Please press OK for Yes or Cancel for No");
-    if (promptNumber == true) {
-      passNumber = [1234567890];
-      pwdArray = pwdArray.concat(passNumber);
-      console.log(pwdArray);
-    }
-
-
-  var promptSpecial = confirm("Will the password include Special characters (i.e. !@#$%)? Please press OK for Yes or Cancel for No");
-    if (promptSpecial == true) {
-      passSpecial = ["!"];
-      pwdArray = pwdArray.concat(passSpecial);
-      console.log(promptSpecial);
-      console.log(pwdArray);
-    } else {
-      return pwdArray;
-    }
-  
-    
-      
-    for (var i =0; i < passLength; i++) {
-      passwordRandom += pwdArray[(Math.floor(Math.random() * pwdArray.length))];
-      }
-      console.log(pwdArray[0]);
-      console.log(pwdArray[1]);
-      console.log(pwdArray[2]);
-}
 
 function generatePassword() {
   
-  passwordCriteria();
- 
-  return passwordRandom;
+  // created passArray to hold values as they pass through the prompts
+  var passArray = [];
+
+
+  var promptLength = prompt("Please enter a password length between 8 and 128 characters");
+  if (promptLength === "" || promptLength === null || promptLength < 8 || promptLength > 128 || promptLength % 1 != 0 || Number(promptLength) === NaN) {
+  window.alert("You need to provide a valid entry! Please try again.");
+  return passwordCriteria();
+  }
+  else{
+    passLength = promptLength;
+  } 
+
+    // Used confirm method for the boolean prompts
+var promptLower = confirm("Will the password include Lowercase characters? Please press OK for Yes or Cancel for No");
+  if (promptLower == true) {
+    passLower = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+    console.log(passLower);
+    passArray = passArray.concat(passLower);
+    
+  }
+
+var promptUpper = confirm("Will the password include Uppercase characters? Please press OK for Yes or Cancel for No");
+  if (promptUpper == true) {
+    passUpper = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+    passArray = passArray.concat(passUpper);
+    
+  }
+
+var promptNumber = confirm("Will the password include Numbers? Please press OK for Yes or Cancel for No");
+  if (promptNumber == true) {
+    passNumber = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"];
+    passArray = passArray.concat(passNumber);
+    
+  } 
+
+
+var promptSpecial = confirm("Will the password include Special characters (i.e. !@#$%)? Please press OK for Yes or Cancel for No");
+  if (promptSpecial == true) {
+    passSpecial = ["!", "$", "#","@", "%", "^", "&", "*", "(", ")", "-", "_", '"', "'", "=", "+" ];
+    passArray = passArray.concat(passSpecial);
+   
+  } else {
+  }
+  
+  //Created for loop to randomize the captured data per the user's length entry
+  var passwordRandom = [];
+  for (var i =0; i < passLength; i++) {
+    passwordRandom += passArray[(Math.floor(Math.random() * passArray.length))];
+    }
+
+    return passwordRandom;
+
+    //Upon clicking the button again, the password will reset
 
 }
 
@@ -99,11 +84,7 @@ var generateBtn = document.querySelector("#generate");
 
 
   passwordText.value = password;
-
 }
-
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
-
-
