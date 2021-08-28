@@ -22,7 +22,7 @@ function generatePassword() {
   var promptLength = prompt("Please enter a password length between 8 and 128 characters");
   if (promptLength === "" || promptLength === null || promptLength < 8 || promptLength > 128 || promptLength % 1 != 0 || Number(promptLength) === NaN) {
   window.alert("You need to provide a valid entry! Please try again.");
-  return passwordCriteria();
+  return generatePassword();
   }
   else{
     passLength = promptLength;
